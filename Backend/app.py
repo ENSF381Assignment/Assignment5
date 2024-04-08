@@ -2,8 +2,8 @@
 =========================================================
 Name        : app.py
 Assignment  : Assignment 5
-Author(s)   : Yuecheng Sun,
-Submission  : Apr , 2024
+Author(s)   : Yuecheng Sun, Joshua Maher
+Submission  : Apr 8, 2024
 Description : Flask
 =========================================================
 """
