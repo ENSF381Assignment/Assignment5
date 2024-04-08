@@ -101,7 +101,7 @@ def register_api():
         return jsonify({'error': 0})  # Register success
 
 
-@app.route('/register_api', methods=['POST'])
+@app.route('/login_api', methods=['POST'])
 def login_api():
     data = request.json
     username = data['Username']
@@ -114,9 +114,9 @@ def login_api():
         return jsonify({'error': 0})  # Login success
 
 
-@app.route('/products_api', methods=['GET'])
-def register_api():
-    return jsonify(products)
+# @app.route('/register_api', methods=['GET'])
+# def register_api():
+#     return jsonify(products)
 
 
 if __name__ == '__main__':

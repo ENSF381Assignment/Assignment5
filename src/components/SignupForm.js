@@ -7,18 +7,42 @@ const SignupForm = ({switchForm}) => {
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (username !== '' && password !== '' && confirmPassword !== '' && email !== '') {
             if (password === confirmPassword) {
                 setMessage('User signed up successfully!')
-                //send to back end
-            }
-            else {
+                const userData = {
+                    Username: username,
+                    Password: password,
+                    Email: email
+                };
+
+                try {
+                    const response = await fetch('http://127.0.0.1:5000/register_api', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(userData)
+                    });
+                    const responseData = await response.json();
+
+                    if (responseData.error === 0) {
+                        setMessage('User signed up successfully!');
+                    } else if (responseData.error === 1) {
+                        setMessage('Username is already taken.');
+                    } else {
+                        setMessage('An unknown error occurred.');
+                    }
+                } catch (error) {
+                    console.error('Error during the fetch operation:', error);
+                    setMessage('Failed to send data to the server.');
+                }
+            } else {
                 setMessage('Passwords do not match!')
             }
-        }
-        else {
+        } else {
             setMessage('All fields are required!')
         }
     };
