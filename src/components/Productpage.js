@@ -3,8 +3,6 @@ import Header from './Header';
 import ProductList from './ProductList';
 import Cart from './Cart';
 import Footer from './Footer';
-import productsData from '../data/products';
-import { Link } from 'react-router-dom';
 
 const Productpage = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -63,7 +61,7 @@ const Productpage = () => {
       <table>
         <tbody>
           <tr>
-            <td><ProductList products={productsData} onAddToCart={addToCart} /></td>
+            <td><ProductList onAddToCart={addToCart} /></td>
             <td style={{ verticalAlign: 'top' }}><Cart cartItems={cartItems} onRemove={removeFromCart} /></td>
           </tr>
         </tbody>
