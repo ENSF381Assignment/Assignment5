@@ -5,6 +5,7 @@ const LoginForm = ({switchForm}) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -24,7 +25,7 @@ const LoginForm = ({switchForm}) => {
                 const responseData = await response.json();
                 if (responseData.error === 0) {
                     setMessage('Logged in!');
-                    return <Productpage />;
+                    setIsLoggedIn(true);
                 } else if (responseData.error !== 1) {
                     setMessage('Username or password incorrect.');
                 } else {
@@ -38,6 +39,10 @@ const LoginForm = ({switchForm}) => {
             setMessage('All fields are required!')
         }
     };
+
+    if (isLoggedIn) {
+        return <Productpage />;
+    }
 
     return (
         <form onSubmit={handleSubmit}>
