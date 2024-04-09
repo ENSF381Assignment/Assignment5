@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import Productpage from './Productpage';
 
 const LoginForm = ({switchForm}) => {
     const [username, setUsername] = useState('');
@@ -23,6 +24,7 @@ const LoginForm = ({switchForm}) => {
                 const responseData = await response.json();
                 if (responseData.error === 0) {
                     setMessage('Logged in!');
+                    return <Productpage />;
                 } else if (responseData.error !== 1) {
                     setMessage('Username or password incorrect.');
                 } else {
